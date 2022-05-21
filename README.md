@@ -1,5 +1,5 @@
 
-# ABOUT
+# WEBSTORY
 
 Webstory are a free, open-web, visual storytelling format for the web, enabling you to easily generate visual narratives 
 
@@ -9,13 +9,14 @@ Webstory are a free, open-web, visual storytelling format for the web, enabling 
 - Automate CSV to webstory
 - Automate via WordPress Automatic Plugin
 
-## CSV to webstory
-1. Create CSV
+## CSV to Webstory
+- Create CSV
 
 Sample CSV file for the webstory is given with the sample data.
 [r2h] https://drive.google.com/file/d/1jMAb-farLdkErxdpMW-a6_bWrwYawwHj/view
 <br>
-2. Import CSV using any importer plugin
+- Import CSV using any importer plugin
+
 We are going to use WP All Import plugin.
 #### follow the below steps:
 
