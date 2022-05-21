@@ -26,9 +26,11 @@ scroll down to Custom Fields and give below name.
 
 `web_title` for Title
 `web_image` for Image
-
+<br>
 Note: Use `|` as seprator 
-![My Remote Image] https://gcdnb.pbrd.co/images/DYxFllwR1E60.png?o=1
+<br>
+<img src="https://gcdnb.pbrd.co/images/DYxFllwR1E60.png?o=1" >
+
 
 3. Next step is import Settings in which Click the Auto-detect button. This will automatically identify a unique identifier.
 
