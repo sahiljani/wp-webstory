@@ -37,6 +37,7 @@ $link = $myposts2[0]->guid;
     <title><?php the_title(); ?></title>
     <link rel="canonical" href="<?php echo $link; ?>">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
     <style amp-boilerplate>
     body {
         -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
@@ -105,8 +106,12 @@ $link = $myposts2[0]->guid;
         </style>
     </noscript>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
+    <!-- <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script> -->
     <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <script src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js" custom-element="amp-analytics" async></script>
+<script async custom-element="amp-story-auto-ads" src="https://cdn.ampproject.org/v0/amp-story-auto-ads-0.1.js"></script>
+
+
     <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400" rel="stylesheet">
     <style amp-custom>
     amp-story {
@@ -189,13 +194,34 @@ $link = $myposts2[0]->guid;
         }
     </style>
 </head>
+<?php
+if (wp_get_attachment_url(get_option('media_selector_attachment_id'))) {
+    $logourl =  wp_get_attachment_url(get_option('media_selector_attachment_id'));
+} else {
+    $logourl =  plugin_dir_url(dirname(__FILE__)) . 'logo.png';
+}
+
+
+
+?>
 
 <body>
     <!-- Cover page -->
-    <amp-story standalone title="Joy of Pets" publisher="AMP tutorials"
-        publisher-logo-src="<?php echo wp_get_attachment_url(get_option('media_selector_attachment_id')); ?>"
+    <amp-story standalone title="<?php the_title(); ?>" publisher="Yash Mehta" publisher-logo-src="<?php echo $web_img_arr[0] ?>"
         poster-portrait-src="<?php echo $web_img_arr[0] ?>">
 
+
+        <amp-story-auto-ads>
+            <script type="application/json">
+            {
+                "ad-attributes": {
+                    "type": "adsense",
+                    "data-ad-client": "<?php echo get_option('amp-story-auto-ads'); ?>",
+                    "data-ad-slot": "<?php echo get_option('amp-story-auto-ads-slot'); ?>"
+                }
+            }
+            </script>
+        </amp-story-auto-ads>
 
 
         <?php
@@ -213,7 +239,6 @@ $link = $myposts2[0]->guid;
                 </amp-img>
             </amp-story-grid-layer>
             <amp-story-grid-layer template="thirds">
-                <!-- <h1 grid-area="upper-third">Dogs</h1> -->
                 <p class="banner-text" grid-area="lower-third"><?php echo $web_title_arr[$i]; ?></p>
             </amp-story-grid-layer>
             <?php if ($i == ($length - 1)) { ?>
@@ -230,7 +255,41 @@ $link = $myposts2[0]->guid;
         }
         ?>
 
-
+        <amp-analytics type="gtag" data-credentials="include">
+            <script type="application/json">
+            {
+                "vars": {
+                    "gtag_id": "<?php echo get_option('amp-story-analytics'); ?>",
+                    "config": {
+                        "<?php echo get_option('amp-story-analytics'); ?>": {
+                            "groups": "default"
+                        }
+                    }
+                },
+                "triggers": {
+                    "storyProgress": {
+                        "on": "story-page-visible",
+                        "vars": {
+                            "event_name": "custom",
+                            "event_action": "story_progress",
+                            "event_category": "<?php the_title(); ?>",
+                            "event_label": "<?php the_title(); ?>",
+                            "send_to": ["<?php echo get_option('amp-story-analytics'); ?>"]
+                        }
+                    },
+                    "storyEnd": {
+                        "on": "story-last-page-visible",
+                        "vars": {
+                            "event_name": "custom",
+                            "event_action": "story_complete",
+                            "event_category": "<?php the_title(); ?>}",
+                            "send_to": ["<?php echo get_option('amp-story-analytics'); ?>"]
+                        }
+                    }
+                }
+            }
+            </script>
+        </amp-analytics>
         <!-- Bookend -->
         <amp-story-bookend layout="nodisplay">
 
