@@ -13,7 +13,7 @@ Webstory are a free, open-web, visual storytelling format for the web, enabling 
 - Create CSV
 
 Sample CSV file for the webstory is given with the sample data.
-[r2h] https://drive.google.com/file/d/1jMAb-farLdkErxdpMW-a6_bWrwYawwHj/view
+[r2h] [https://drive.google.com/file/d/1cuHlrZmuKXanr-SZoRus9axw87UNhj00/view?usp=sharing] (https://drive.google.com/file/d/1cuHlrZmuKXanr-SZoRus9axw87UNhj00/view?usp=sharing)
 <br>
 - Import CSV using any importer plugin
 
